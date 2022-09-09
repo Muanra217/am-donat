@@ -5,9 +5,9 @@ import { useState } from "react";
 const Featured = () => {
     const [index, setIndex] = useState(0);
     const images = [
-        "/img/featured.png",
-        "/img/featured2.png",
-        "/img/featured3.png",
+        "/img/banner1.png",
+        "/img/banner2.png",
+        "/img/banner3.png",
     ];
     //slider function
     const handleArrow = (direction) => {
