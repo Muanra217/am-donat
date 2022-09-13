@@ -8,9 +8,9 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>AM Donat</title>
+        <title>AM Donuts</title>
         <meta name="description" content="Best UMKM Food in Town" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon_io/favicon.ico" />
       </Head>
       <Featured/>
       <ProductList/>
