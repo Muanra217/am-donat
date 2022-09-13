@@ -9,7 +9,7 @@ const Navbar = () => {
           <Image src={"/img/donut.png"} alt="callButton" width="32" height="32"/>
         </div> */}
         <div className={styles.logo}>
-          <Image src={"/img/logo2.png"} alt="logo" width={240} height={80}/>
+          <Image src={"/img/logo.png"} alt="logo" width={240} height={80}/>
         </div>
         {/* <div className={styles.texts}>
           <div className={styles.text}>A.M DONAT</div>

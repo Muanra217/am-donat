@@ -12,7 +12,7 @@
 .title {
     font-size: 18px;
     font-weight: bold;
-    color: #d1411e;
+    color: teal;
 }
 
 .price {
@@ -26,7 +26,7 @@
     color: #777;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 540px) {
     .container {
         width: 100%;
     }
