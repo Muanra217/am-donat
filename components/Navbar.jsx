@@ -1,21 +1,27 @@
 import Image from 'next/image'
 import styles from '../styles/Navbar.module.css'
+import { useSelector } from 'react-redux'
+import Link from 'next/link';
 
 const Navbar = () => {
+
+  const quantity = useSelector(state => state.cart.quantity);
   return (
     <div className={styles.container}>
-      <div className={styles.item}>
-        {/* <div >
-          <Image src={"/img/donut.png"} alt="callButton" width="32" height="32"/>
-        </div> */}
-        <div className={styles.logo}>
-          <Image src={"/img/logo.png"} alt="logo" width={240} height={80}/>
+      <Link href="/" passHref>
+        <div className={styles.item}>
+          {/* <div >
+            <Image src={"/img/donut.png"} alt="callButton" width="32" height="32"/>
+          </div> */}
+          <div className={styles.logo}>
+            <Image src={"/img/logo.png"} alt="logo" width={240} height={80}/>
+          </div>
+          {/* <div className={styles.texts}>
+            <div className={styles.text}>A.M DONAT</div>
+            <div className={styles.text}>0823 3034 4792</div>
+          </div> */}
         </div>
-        {/* <div className={styles.texts}>
-          <div className={styles.text}>A.M DONAT</div>
-          <div className={styles.text}>0823 3034 4792</div>
-        </div> */}
-      </div>
+      </Link>
       <div className={styles.item}>
         <ul className={styles.list}>
           <li className={styles.listItem}>Homepage</li>
@@ -27,12 +33,14 @@ const Navbar = () => {
           <li className={styles.listItem}>Contact</li> */}
         </ul>
       </div>
-      <div className={styles.item}>
-        <div className={styles.cart}>
-          <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
-          <div className={styles.counter}>2</div>
+      <Link href="/cart" passHref>
+        <div className={styles.item}>
+          <div className={styles.cart}>
+            <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
+            <div className={styles.counter}>{quantity}</div>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   )
 }
