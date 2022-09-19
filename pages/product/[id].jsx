@@ -1,4 +1,5 @@
 import styles from '../../styles/Product.module.css'
+import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
 import axios from 'axios'
@@ -39,6 +40,10 @@ const Product = ({product}) => {
     }
 
     return (
+        <>
+        <Head>
+            <title>Product {product.title}</title>
+        </Head>
         <div className={styles.container}>
             <div className={styles.left}>
                 <div className={styles.imgContainer}>
@@ -47,7 +52,7 @@ const Product = ({product}) => {
             </div>
             <div className={styles.right}>
                 <h1 className={styles.title}>{product.title}</h1>
-                <span className={styles.price}>Rp.{price}</span>
+                <span className={styles.price}>{price.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</span>
                 <p className={styles.desc}>{product.desc}</p>
                 <h3 className={styles.choose}>Choose the size</h3>
                 <div className={styles.sizes}>
@@ -84,6 +89,7 @@ const Product = ({product}) => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

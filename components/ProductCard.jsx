@@ -5,11 +5,11 @@ import Link from "next/link";
 const ProductCard = ({product}) => {
   return (
     <div className={styles.container}>
-      <Link href={`/product/${product._id}`}>
-        <Image src="/img/pizza.png" width={500} height={500} alt="pizza"/>
+      <Link href={`/product/${product._id}`} passHref>
+        <a><Image src="/img/pizza.png" width={500} height={500} alt="pizza"/></a>
       </Link>
       <h1 className={styles.title}>{product.title}</h1>
-      <span className={styles.price}>Rp. {product.prices[0]}</span>
+      <span className={styles.price}>{product.prices[0].toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</span>
       <p className={styles.desc}>{product.desc}</p>
     </div>
   )
