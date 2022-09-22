@@ -6,7 +6,7 @@ const ProductCard = ({product}) => {
   return (
     <div className={styles.container}>
       <Link href={`/product/${product._id}`} passHref>
-        <a><Image src="/img/pizza.png" width={500} height={500} alt="pizza"/></a>
+        <a><Image src={product.img} width={500} height={500} alt="pizza"/></a>
       </Link>
       <h1 className={styles.title}>{product.title}</h1>
       <span className={styles.price}>{product.prices[0].toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</span>
