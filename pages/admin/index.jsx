@@ -44,8 +44,8 @@ const Index = ({ orders, products }) => {
         <table className={styles.table}>
           <tbody>
             <tr className={styles.trTitle}>
-              <th>Image</th>
-              <th>Id</th>
+              <th className={styles.idOrder}>Image</th>
+              <th className={styles.idOrder}>Id</th>
               <th>Title</th>
               <th>Price</th>
               <th>Action</th>
@@ -53,8 +53,8 @@ const Index = ({ orders, products }) => {
           </tbody>
           {productList.map((product) => (
             <tbody key={product._id}>
-              <tr className={styles.trTitle}>
-                <td>
+              <tr>
+                <td className={styles.idOrder}>
                   <Image
                     src={product.img}
                     width={50}
@@ -63,7 +63,7 @@ const Index = ({ orders, products }) => {
                     alt=""
                   />
                 </td>
-                <td>{product._id.slice(0, 5)}...</td>
+                <td className={styles.idOrder}>{product._id.slice(0, 5)}...</td>
                 <td>{product.title}</td>
                 <td>{product.prices[0].toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</td>
                 <td>
@@ -85,7 +85,7 @@ const Index = ({ orders, products }) => {
         <table className={styles.table}>
           <tbody>
             <tr className={styles.trTitle}>
-              <th>Id</th>
+              <th className={styles.idOrder}>Id</th>
               <th>Customer</th>
               <th>Total</th>
               <th>Payment</th>
@@ -95,8 +95,8 @@ const Index = ({ orders, products }) => {
           </tbody>
           {orderList.map((order) => (
             <tbody key={order._id}>
-              <tr className={styles.trTitle}>
-                <td>{order._id.slice(0, 5)}...</td>
+              <tr>
+                <td className={styles.idOrder}>{order._id.slice(0, 5)}...</td>
                 <td>{order.customer}</td>
                 <td>{order.total.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</td>
                 <td>

@@ -28,3 +28,39 @@
 .button:last-child {
     background-color: crimson;
 }
+
+@media screen and (max-width: 540px) {
+    .container {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .table {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .idOrder {
+        display: none;
+    }
+
+    .tr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .trTitle {
+        display: none;
+    }
+
+    .imgContainer {
+        width: 35vw;
+        height: 35vw;
+
+    }
+}
