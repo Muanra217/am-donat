@@ -4,21 +4,21 @@ import { useState } from "react";
 import styles from "../../styles/Admin.module.css";
 
 const Index = ({ orders, products }) => {
-  const [pizzaList, setPizzaList] = useState(products);
+  const [productList, setProductList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
   const status = ["preparing", "on the way", "delivered"];
 
-//   const handleDelete = async (id) => {
-//     console.log(id);
-//     try {
-//       const res = await axios.delete(
-//         "http://localhost:3000/api/products/" + id
-//       );
-//       setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
+  const handleDelete = async (id) => {
+    console.log(id);
+    try {
+      const res = await axios.delete(
+        "http://localhost:3000/api/products/" + id
+      );
+      setProductList(productList.filter((product) => product._id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleStatus = async (id) => {
     const item = orderList.filter((order) => order._id === id)[0];
@@ -51,7 +51,7 @@ const Index = ({ orders, products }) => {
               <th>Action</th>
             </tr>
           </tbody>
-          {pizzaList.map((product) => (
+          {productList.map((product) => (
             <tbody key={product._id}>
               <tr className={styles.trTitle}>
                 <td>
@@ -65,12 +65,12 @@ const Index = ({ orders, products }) => {
                 </td>
                 <td>{product._id.slice(0, 5)}...</td>
                 <td>{product.title}</td>
-                <td>${product.prices[0]}</td>
+                <td>{product.prices[0].toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</td>
                 <td>
                   <button className={styles.button}>Edit</button>
                   <button
                     className={styles.button}
-                    // onClick={() => handleDelete(product._id)}
+                    onClick={() => handleDelete(product._id)}
                   >
                     Delete
                   </button>
@@ -98,7 +98,7 @@ const Index = ({ orders, products }) => {
               <tr className={styles.trTitle}>
                 <td>{order._id.slice(0, 5)}...</td>
                 <td>{order.customer}</td>
-                <td>${order.total}</td>
+                <td>{order.total.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</td>
                 <td>
                   {order.method === 0 ? <span>cash</span> : <span>paid</span>}
                 </td>
