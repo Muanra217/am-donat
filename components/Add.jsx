@@ -8,8 +8,8 @@ const Add = ({ setClose }) => {
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [prices, setPrices] = useState([]);
-  const [extraOptions, setExtraOptions] = useState([]);
-  const [extra, setExtra] = useState(null);
+  // const [extraOptions, setExtraOptions] = useState([]);
+  // const [extra, setExtra] = useState(null);
 
   const changePrice = (e, index) => {
     const currentPrices = prices;
@@ -17,13 +17,13 @@ const Add = ({ setClose }) => {
     setPrices(currentPrices);
   };
 
-  const handleExtraInput = (e) => {
-    setExtra({ ...extra, [e.target.name]: e.target.value });
-  };
+  // const handleExtraInput = (e) => {
+  //   setExtra({ ...extra, [e.target.name]: e.target.value });
+  // };
 
-  const handleExtra = (e) => {
-    setExtraOptions((prev) => [...prev, extra]);
-  };
+  // const handleExtra = (e) => {
+  //   setExtraOptions((prev) => [...prev, extra]);
+  // };
 
   const handleCreate = async () => {
     const data = new FormData();
@@ -40,7 +40,7 @@ const Add = ({ setClose }) => {
         title,
         desc,
         prices,
-        extraOptions,
+        // extraOptions,
         img: url,
       };
 
@@ -101,7 +101,7 @@ const Add = ({ setClose }) => {
             />
           </div>
         </div>
-        <div className={styles.item}>
+        {/* <div className={styles.item}>
           <label className={styles.label}>Extra</label>
           <div className={styles.extra}>
             <input
@@ -129,7 +129,7 @@ const Add = ({ setClose }) => {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
         <button className={styles.addButton} onClick={handleCreate}>
           Create
         </button>
