@@ -9,7 +9,8 @@ import { addProduct } from '../../redux/cartSlice'
 const Product = ({product}) => {
     const [price, setPrice] = useState(product.prices[0])
     const [size, setSize] = useState(0)
-    const [extras, setExtras] = useState([])
+    // const [extras, setExtras] = useState([])
+    const [notes, setNotes] = useState(null);
     const [quantity, setQuantity] = useState(1)
     const dispatch = useDispatch()
 
@@ -23,20 +24,20 @@ const Product = ({product}) => {
         changePrice(difference);
     }
 
-    const handleChange = (e,option) =>{
-        const checked = e.target.checked;
+    // const handleChange = (e,option) =>{
+    //     const checked = e.target.checked;
 
-        if(checked){
-            changePrice(option.price);
-            setExtras((prev)=>[...prev,option])
-        } else {
-            changePrice(-option.price);
-            setExtras(extras.filter((extra)=>extra._id !== option._id))
-        }
-    }
+    //     if(checked){
+    //         changePrice(option.price);
+    //         setExtras((prev)=>[...prev,option])
+    //     } else {
+    //         changePrice(-option.price);
+    //         setExtras(extras.filter((extra)=>extra._id !== option._id))
+    //     }
+    // }
 
     const handleClick = async () => {
-        dispatch(addProduct({...product, extras, quantity, price}))
+        dispatch(addProduct({...product, quantity, price}))
     }
 
     return (
@@ -69,9 +70,9 @@ const Product = ({product}) => {
                         <span className={styles.number}>Large</span>
                     </div>
                 </div>
-                <h3 className={styles.choose}>Choose additional ingredients</h3>
+                <h3 className={styles.choose}>Notes (Optional)</h3>
                 <div className={styles.ingredients}>
-                    {product.extraOptions.map((option) => (
+                    {/* {product.extraOptions.map((option) => (
                         <div className={styles.option} key={option._id}>
                             <input 
                                 type="checkbox" 
@@ -81,7 +82,14 @@ const Product = ({product}) => {
                                 onChange={(e)=>handleChange(e,option)} />
                             <label htmlFor="double" className={styles.label}>{option.text}</label>
                         </div>
-                    ))}
+                    ))} */}
+                    <textarea
+                        rows={8}
+                        cols={56}
+                        type="text"
+                        placeholder='Contoh: Rasa cokelat'
+                        onChange={(e) => setNotes(e.target.value)}
+                    />
                 </div>
                 <div className={styles.add}>
                     <input type="number" defaultValue={1} className={styles.quantity} onChange={(e)=>setQuantity(e.target.value)}/>
