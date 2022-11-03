@@ -42,7 +42,7 @@ const Product = ({product}) => {
     return (
         <>
         <Head>
-            <title>Product {product.title}</title>
+            <title>{product.title}</title>
         </Head>
         <div className={styles.container}>
             <div className={styles.left}>
@@ -71,7 +71,7 @@ const Product = ({product}) => {
                 </div>
                 <h3 className={styles.choose}>Choose additional ingredients</h3>
                 <div className={styles.ingredients}>
-                    {product.extraOption.map((option) => (
+                    {product.extraOptions.map((option) => (
                         <div className={styles.option} key={option._id}>
                             <input 
                                 type="checkbox" 
