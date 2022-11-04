@@ -55,19 +55,19 @@ const Product = ({product}) => {
                 <h1 className={styles.title}>{product.title}</h1>
                 <span className={styles.price}>{price.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</span>
                 <p className={styles.desc}>{product.desc}</p>
-                <h3 className={styles.choose}>Choose the size</h3>
+                <h3 className={styles.choose}>Choose the amount</h3>
                 <div className={styles.sizes}>
                     <div className={styles.size} onClick={()=>handleSize(0)}>
                         <Image src="/img/size.png" alt="size1" layout='fill'/>
-                        <span className={styles.number}>Small</span>
+                        <span className={styles.number}>6 buah</span>
                     </div>
                     <div className={styles.size} onClick={()=>handleSize(1)}>
                         <Image src="/img/size.png" alt="size1" layout='fill'/>
-                        <span className={styles.number}>Medium</span>
+                        <span className={styles.number}>12 buah</span>
                     </div>
                     <div className={styles.size} onClick={()=>handleSize(2)}>
                         <Image src="/img/size.png" alt="size1" layout='fill'/>
-                        <span className={styles.number}>Large</span>
+                        <span className={styles.number}>24 buah</span>
                     </div>
                 </div>
                 <h3 className={styles.choose}>Notes (Optional)</h3>

@@ -6,7 +6,7 @@ const ProductList = ({productList}) => {
     <div className={styles.container}>
         <h1 className={styles.title}>THE BEST MARKET SNACKS IN TOWN</h1>
         <p className={styles.desc}>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae tempora corrupti quia repellat rem alias dicta nisi voluptates hic at expedita ad quae eius quas, debitis laudantium qui recusandae maiores?
+            Temukan berbagai macam jajanan - jajanan pasar dengan harga terjangkau dan sehat juga enak! Dijual Lusinan dengan harga serba Rp.2500 untuk satu produknya! Yuk, beli sekarang juga!
         </p>
         <div className={styles.wrapper}>
             {productList.map((product) => (
