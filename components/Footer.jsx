@@ -8,7 +8,8 @@ const Footer = () => {
       </div>
       <div className={styles.item}>
         <div className={styles.card}>
-          <h2 className={styles.motto}>AM DONAT UENAK</h2>
+          <h2 className={styles.motto}>AM DONUTS UENAK</h2>
+          <h3 className={styles.motto}>Murah & Meriah</h3>
         </div>
         <div className={styles.card}>
           <h1 className={styles.title}>FIND OUR STALL</h1>
