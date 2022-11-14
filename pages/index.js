@@ -8,6 +8,7 @@ import styles from '../styles/Home.module.css'
 import axios from 'axios'
 import { useState } from 'react'
 import LogoutButton from '../components/LogoutButton'
+import Navbar from '../components/Navbar'
 
 export default function Home({productList, admin}) {
   const [close, setClose] = useState(true);

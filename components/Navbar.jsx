@@ -2,9 +2,50 @@ import Image from 'next/image'
 import styles from '../styles/Navbar.module.css'
 import { useSelector } from 'react-redux'
 import Link from 'next/link';
+import { getCookie } from 'cookies-next';
+import { useEffect, useState } from 'react'
 
 const Navbar = () => {
   const quantity = useSelector(state => state.cart.quantity);
+  const [cart, setCart] = useState(styles.cart)
+  // const getCookie = (cookieName) => {
+  //   let cookie = {};
+  //   document.cookie.split(';').forEach(function(el) {
+  //     let [key,value] = el.split('=');
+  //     cookie[key.trim()] = value;
+  //   })
+  //   return cookie[cookieName];
+  // }
+  useEffect(() => {if(getCookie('token') !== process.env.TOKEN){
+    setCart(styles.cartNone)
+  } else {
+    setCart(styles.cart)
+  }}, [])
+  const cartIcon = () => {
+    if(getCookie('token') === process.env.TOKEN) {
+    //   return (
+    //     <Link href="/cart" passHref>
+    //         <div className={styles.item}>
+    //           <div className={styles.cart}>
+    //             <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
+    //             <div className={styles.counter}>{quantity}</div>
+    //           </div>
+    //         </div>
+    //     </Link>
+    //   )
+    // } else {
+    //   return (
+    //     <Link href="/cart" passHref>
+    //       <div className={styles.item}>
+    //         <div className={styles.cartNone}>
+    //           <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
+    //           <div className={styles.counter}>{quantity}</div>
+    //         </div>
+    //       </div>
+    //     </Link>
+    //   )
+    }
+  }
   return (
     <div className={styles.container}>
       <Link href="/" passHref>
@@ -27,14 +68,17 @@ const Navbar = () => {
           <li className={styles.listItem}>Contact</li>
         </ul>
       </div> */}
-      <Link href="/cart" passHref>
-        <div className={styles.item}>
-          <div className={styles.cart}>
-            <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
-            <div className={styles.counter}>{quantity}</div>
+       {/* {cartIcon()} */}
+        <Link href="/cart" passHref>
+          <div className={styles.item}>
+            <div className={cart}>
+              <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
+              <div className={styles.counter}>{quantity}</div>
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+        
+        
     </div>
   )
 }

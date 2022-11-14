@@ -1,19 +1,22 @@
 import styles from "../styles/Add.module.css";
-import Link from 'next/link';
-import handler from "../pages/api/logout";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import axios from 'axios'
 
 const LogoutButton = () => {
+  const router = useRouter();
+
+  const handleClick = async () => {
+      await axios.post("http://localhost:3000/api/logout", {
+      });
+      router.push("/admin");
+  };
+
   return (
     <>
-        <Link href="/" passHref>
-            <div onClick={() => handler} className={styles.mainAddButton}>
-                Logout
-            </div>
-        </Link>
+        <div onClick={() => handleClick()} className={styles.mainAddButton}>
+            Logout
+        </div>
     </>
-    
   );
 };
 
