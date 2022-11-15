@@ -1,11 +1,14 @@
 import Head from 'next/head'
 import Add from '../components/Add'
 import AddButton from '../components/AddButton'
+import AdminButton from '../components/AdminButton'
 import Featured from '../components/Featured'
 import ProductList from '../components/ProductList'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
 import { useState } from 'react'
+import LogoutButton from '../components/LogoutButton'
+import Navbar from '../components/Navbar'
 
 export default function Home({productList, admin}) {
   const [close, setClose] = useState(true);
@@ -18,6 +21,8 @@ export default function Home({productList, admin}) {
       </Head>
       <Featured/>
       {admin && <AddButton setClose={setClose} />}
+      {admin && <AdminButton />}
+      {admin && <LogoutButton />}
       <ProductList productList={productList}/>
       {!close && <Add setClose={setClose} />}
     </div>

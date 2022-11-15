@@ -2,8 +2,9 @@ import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "../../styles/Admin.module.css";
+import Navbar from "../../components/Navbar";
 
-const Index = ({ orders, products }) => {
+const Index = ({ orders, products}) => {
   const [productList, setProductList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
   const status = ["preparing", "on the way", "delivered"];
@@ -38,6 +39,7 @@ const Index = ({ orders, products }) => {
   };
 
   return (
+    <>
     <div className={styles.container}>
       <div className={styles.item}>
         <h1 className={styles.title}>Products</h1>
@@ -67,7 +69,11 @@ const Index = ({ orders, products }) => {
                 <td>{product.title}</td>
                 <td>{product.prices[0].toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</td>
                 <td>
-                  <button className={styles.button}>Edit</button>
+                  <button 
+                  className={styles.button}
+                  >
+                    Edit
+                  </button>
                   <button
                     className={styles.button}
                     onClick={() => handleDelete(product._id)}
@@ -114,6 +120,8 @@ const Index = ({ orders, products }) => {
         </table>
       </div>
     </div>
+    </>
+    
   );
 };
 
