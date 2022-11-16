@@ -2,11 +2,12 @@ import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "../../styles/Admin.module.css";
-import Navbar from "../../components/Navbar";
+import Edit from "../../components/Edit";
 
 const Index = ({ orders, products}) => {
   const [productList, setProductList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
+  const [close, setClose] = useState(true);
   const status = ["preparing", "on the way", "delivered"];
 
   const handleDelete = async (id) => {
@@ -71,9 +72,11 @@ const Index = ({ orders, products}) => {
                 <td>
                   <button 
                   className={styles.button}
+                  onClick={() => setClose(false)}
                   >
                     Edit
                   </button>
+                  {!close && <Edit setClose={setClose} />}
                   <button
                     className={styles.button}
                     onClick={() => handleDelete(product._id)}
