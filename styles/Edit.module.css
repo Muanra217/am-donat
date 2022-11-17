@@ -12,9 +12,9 @@
   }
   
   .container {
-    /* width: 100vw; */
+    width: 100vw;
     height: 100vh;
-    /* background-color: rgba(245, 240, 240, 0.52); */
+    background-color: rgba(245, 240, 240, 0.90);
     position: fixed;
     top: 0;
     z-index: 999;

@@ -22,6 +22,18 @@ const Index = ({ orders, products}) => {
     }
   };
 
+  const handleEdit = async (id) => {
+    console.log(id);
+    try {
+      const res = await axios.delete(
+        "http://localhost:3000/api/products/" + id
+      );
+      setProductList(productList.filter((product) => product._id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleStatus = async (id) => {
     const item = orderList.filter((order) => order._id === id)[0];
     const currentStatus = item.status;
@@ -71,12 +83,12 @@ const Index = ({ orders, products}) => {
                 <td>{product.prices[0].toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</td>
                 <td>
                   <button 
+                  products={products}
                   className={styles.button}
-                  onClick={() => setClose(false)}
+                  onClick={() => {setClose(false); handleEdit(product._id)}}
                   >
                     Edit
                   </button>
-                  {!close && <Edit setClose={setClose} />}
                   <button
                     className={styles.button}
                     onClick={() => handleDelete(product._id)}
@@ -89,6 +101,7 @@ const Index = ({ orders, products}) => {
           ))}
         </table>
       </div>
+      {!close && <Edit setClose={setClose} />}
       <div className={styles.item}>
         <h1 className={styles.title}>Orders</h1>
         <table className={styles.table}>

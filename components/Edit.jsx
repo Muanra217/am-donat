@@ -3,14 +3,14 @@ import styles from "../styles/Edit.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const Add = ({ setClose }) => {
+const Edit = ({ setClose, products }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [prices, setPrices] = useState([]);
   // const [extraOptions, setExtraOptions] = useState([]);
   // const [extra, setExtra] = useState(null);
-
+  console.log(products)
   const changePrice = (e, index) => {
     const currentPrices = prices;
     currentPrices[index] = e.target.value;
@@ -23,6 +23,18 @@ const Add = ({ setClose }) => {
 
   // const handleExtra = (e) => {
   //   setExtraOptions((prev) => [...prev, extra]);
+  // };
+
+  // const handleEdit = async (id) => {
+  //   console.log(id);
+  //   try {
+  //     const res = await axios.delete(
+  //       "http://localhost:3000/api/products/" + id
+  //     );
+  //     setProductList(productList.filter((product) => product._id !== id));
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
   // };
 
   const handleCreate = async () => {
@@ -57,7 +69,7 @@ const Add = ({ setClose }) => {
         <span onClick={() => setClose(true)} className={styles.close}>
           X
         </span>
-        <h1>Add a new Product</h1>
+        <h1>Edit a Product</h1>
         <div className={styles.item}>
           <label className={styles.label}>Choose an image</label>
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
@@ -131,11 +143,11 @@ const Add = ({ setClose }) => {
           </div>
         </div> */}
         <button className={styles.addButton} onClick={handleCreate}>
-          Create
+          Edit
         </button>
       </div>
     </div>
   );
 };
 
-export default Add;
+export default Edit;
