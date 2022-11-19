@@ -1,9 +1,11 @@
 .container {
-    padding: 50px;
+    /* padding: 50px; */
     display: flex;
 }
 
 .item {
+    padding-right: 50px;
+    padding-left: 50px;
     flex: 1;
 }
 

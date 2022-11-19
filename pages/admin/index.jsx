@@ -2,14 +2,27 @@ import axios from "axios";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "../../styles/Admin.module.css";
-import Navbar from "../../components/Navbar";
+import Edit from "../../components/Edit";
 
 const Index = ({ orders, products}) => {
   const [productList, setProductList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
+  const [close, setClose] = useState(true);
   const status = ["preparing", "on the way", "delivered"];
 
   const handleDelete = async (id) => {
+    console.log(id);
+    try {
+      const res = await axios.delete(
+        "http://localhost:3000/api/products/" + id
+      );
+      setProductList(productList.filter((product) => product._id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleEdit = async (id) => {
     console.log(id);
     try {
       const res = await axios.delete(
@@ -70,7 +83,9 @@ const Index = ({ orders, products}) => {
                 <td>{product.prices[0].toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</td>
                 <td>
                   <button 
+                  products={products}
                   className={styles.button}
+                  onClick={() => {setClose(false); handleEdit(product._id)}}
                   >
                     Edit
                   </button>
@@ -86,6 +101,7 @@ const Index = ({ orders, products}) => {
           ))}
         </table>
       </div>
+      {!close && <Edit setClose={setClose} />}
       <div className={styles.item}>
         <h1 className={styles.title}>Orders</h1>
         <table className={styles.table}>
