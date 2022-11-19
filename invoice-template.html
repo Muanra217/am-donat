@@ -128,7 +128,7 @@
                     const tomorrow = new Date(today)
                     tomorrow.setDate(tomorrow.getDate() + 1)
                 </script>
-                <b>Created:</b> <script> document.write(today.toLocaleString()); </script><br>
+                <b>Created:</b> <script> document.write(today.toLocaleString()) </script><br>
                 <b>Due:</b> <script> document.write(tomorrow.toLocaleString()) </script>
               </td>
             </tr>
@@ -141,16 +141,13 @@
           <table>
             <tr>
               <td>
-                AM DONUTS<br>
-                Dusun Sumbermulyo, Kec. Kerek,<br> 
-                Kabupaten Tuban, Jawa Timur<br>
-                085711097085
+                <b>Id</b>: {{customerId}}<br>
+                <b>Customer</b>: {{customerName}}<br>
+                <b>Address</b>: {customerAddress}
               </td>
-
               <td>
-                JackBoys Inc.<br>
-                {{customerName}}<br>
-                example@example.com
+                AM DONUTS<br>
+                085711097085
               </td>
             </tr>
           </table>
@@ -163,41 +160,61 @@
         </td>
 
         <td>
-          Check #
+          #
         </td>
       </tr>
 
       <tr class="details">
         <td>
-          Check
+          Method
         </td>
 
         <td>
-          1000
+          {{customerMethod}}
         </td>
       </tr>
 
       <tr class="heading">
         <td>
-          Item
+          Payment Status
         </td>
 
         <td>
-          Price
+          #
         </td>
       </tr>
 
-      <tr class="item">
+      <tr class="details">
         <td>
-          Real Estate
+          Status
         </td>
 
         <td>
-          $33,000.00
+          {{customerStatus}}
         </td>
       </tr>
 
-      <tr class="item">
+      <tr class="heading">
+        <td>
+          Payment Total
+        </td>
+
+        <td>
+          #
+        </td>
+      </tr>
+
+      <tr class="details">
+        <td>
+          Total
+        </td>
+
+        <td>
+          {{customerTotal}}
+        </td>
+      </tr>
+
+      <!-- <tr class="item">
         <td>
           Lamborghini
         </td>
@@ -215,15 +232,15 @@
         <td>
           $10.00
         </td>
-      </tr>
+      </tr> -->
 
-      <tr class="total">
+      <!-- <tr class="total">
         <td></td>
 
         <td>
-          Total: $283,010.00
+          Total: {{customerTotal}}
         </td>
-      </tr>
+      </tr> -->
     </table>
   </div>
 </body>

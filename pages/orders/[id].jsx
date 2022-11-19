@@ -18,7 +18,14 @@ const Order = ({order}) => {
         const fetchData = async () => {
             const data = await fetch('http://localhost:3000/api/generate-invoice', {
                 method: 'POST',
-                body:  JSON.stringify({ name: order.name }),
+                body: JSON.stringify({ 
+                    customer: order.customer, 
+                    id: order._id, 
+                    address: order.address, 
+                    total:order.total.toLocaleString("id-ID", {style:"currency", currency:"IDR"}),
+                    method: order.method,
+                    status: order.status,
+                }),
             });
             // convert the response into an array Buffer
             return data.arrayBuffer();
