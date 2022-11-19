@@ -1,6 +1,7 @@
 import styles from '../../styles/Order.module.css'
 import Image from 'next/image'
 import axios from 'axios';
+import { useState } from 'react';
 
 const Order = ({order}) => {
     const status = order.status;
@@ -9,6 +10,32 @@ const Order = ({order}) => {
         if (index - status === 1) return styles.active;
         if (index - status > 1) return styles.todo;
     }
+
+     // container function to generate the Invoice
+    const generateInvoice = e => {
+        e.preventDefault();
+        // send a post request with the name to our API endpoint
+        const fetchData = async () => {
+            const data = await fetch('http://localhost:3000/api/generate-invoice', {
+                method: 'POST',
+                body:  JSON.stringify({ name: order.name }),
+            });
+            // convert the response into an array Buffer
+            return data.arrayBuffer();
+        };
+
+        // convert the buffer into an object URL
+        const saveAsPDF = async () => {
+            const buffer = await fetchData();
+            const blob = new Blob([buffer]);
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'invoiceAMDonuts.pdf';
+            link.click();
+        };
+    saveAsPDF();
+    };
+
     return (
     <div className={styles.container}>
         <div className={styles.left}>
@@ -83,7 +110,7 @@ const Order = ({order}) => {
                 <div className={styles.totalText}>
                     <b className={styles.totalTextTitle}>Total:</b>{order.total.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}
                 </div>
-                <button disabled className={styles.button}>PAID</button>
+                <button className={styles.button} onClick={generateInvoice}>INVOICE</button>
             </div>
         </div>
     </div>

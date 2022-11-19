@@ -78,7 +78,7 @@
     color: teal;
     font-weight: bold;
     margin-top: 20px;
-    cursor: not-allowed;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 540px) {
