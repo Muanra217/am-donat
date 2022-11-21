@@ -14,6 +14,7 @@ import OrderDetail from "../components/OrderDetail";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const [close, setClose] = useState(false);
   const [open, setOpen] = useState(false);
   const [cash, setCash] = useState(false);
   const amount = cart.total;
@@ -99,7 +100,7 @@ const Cart = () => {
             <tr className={styles.trTitle}>
               <th>Product</th>
               <th>Name</th>
-              {/* <th>Notes</th> */}
+              <th>Notes</th>
               <th>Price</th>
               <th>Quantity</th>
               <th>Total</th>
@@ -121,13 +122,11 @@ const Cart = () => {
                 <td>
                   <span className={styles.name}>{product.title}</span>
                 </td>
-                {/* <td>
+                <td>
                   <span className={styles.extras}>
-                    {product.extras.map((extra) => (
-                      <span key={extra._id}>{extra.text}, </span>
-                    ))}
+                    {product.notes}
                   </span>
-                </td> */}
+                </td>
                 <td>
                   <span className={styles.price}>{product.price.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</span>
                 </td>
@@ -160,7 +159,7 @@ const Cart = () => {
             <div className={styles.paymentMethods}>
               <button
                 className={styles.payButton}
-                onClick={() => setCash(true)}
+                onClick={() => {setCash(true),setClose(setClose)} }
               >
                 CASH ON DELIVERY
               </button>
@@ -183,7 +182,7 @@ const Cart = () => {
           )}
         </div>
       </div>
-      {cash && <OrderDetail total={cart.total} createOrder={createOrder}/>}
+      {cash && !close && <OrderDetail total={cart.total} createOrder={createOrder} setClose={setClose}/>}
     </div>
   );
 };

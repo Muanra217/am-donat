@@ -37,7 +37,7 @@ const Product = ({product}) => {
     // }
 
     const handleClick = async () => {
-        dispatch(addProduct({...product, quantity, price}))
+        dispatch(addProduct({...product, quantity, price, notes}))
     }
 
     return (
@@ -59,15 +59,15 @@ const Product = ({product}) => {
                 <div className={styles.sizes}>
                     <div className={styles.size} onClick={()=>handleSize(0)}>
                         <Image src="/img/size.png" alt="size1" layout='fill'/>
-                        <span className={styles.number}>6 buah</span>
+                        <span className={styles.number}>6 pcs</span>
                     </div>
                     <div className={styles.size} onClick={()=>handleSize(1)}>
                         <Image src="/img/size.png" alt="size1" layout='fill'/>
-                        <span className={styles.number}>12 buah</span>
+                        <span className={styles.number}>12 pcs</span>
                     </div>
                     <div className={styles.size} onClick={()=>handleSize(2)}>
                         <Image src="/img/size.png" alt="size1" layout='fill'/>
-                        <span className={styles.number}>24 buah</span>
+                        <span className={styles.number}>24 pcs</span>
                     </div>
                 </div>
                 <h3 className={styles.choose}>Notes (Optional)</h3>
