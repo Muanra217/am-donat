@@ -21,31 +21,7 @@ const Navbar = () => {
   } else {
     setCart(styles.cart)
   }}, [])
-  const cartIcon = () => {
-    if(getCookie('token') === process.env.TOKEN) {
-    //   return (
-    //     <Link href="/cart" passHref>
-    //         <div className={styles.item}>
-    //           <div className={styles.cart}>
-    //             <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
-    //             <div className={styles.counter}>{quantity}</div>
-    //           </div>
-    //         </div>
-    //     </Link>
-    //   )
-    // } else {
-    //   return (
-    //     <Link href="/cart" passHref>
-    //       <div className={styles.item}>
-    //         <div className={styles.cartNone}>
-    //           <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
-    //           <div className={styles.counter}>{quantity}</div>
-    //         </div>
-    //       </div>
-    //     </Link>
-    //   )
-    }
-  }
+
   return (
     <div className={styles.container}>
       <Link href="/" passHref>
@@ -68,17 +44,14 @@ const Navbar = () => {
           <li className={styles.listItem}>Contact</li>
         </ul>
       </div> */}
-       {/* {cartIcon()} */}
-        <Link href="/cart" passHref>
           <div className={styles.item}>
-            <div className={cart}>
-              <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
+            <Link href="/cart" passHref>
+              <div className={cart}>
+                <Image src={"/img/cart.png"} alt="logo" width="30px" height="30px"/>
               <div className={styles.counter}>{quantity}</div>
-            </div>
+              </div>
+            </Link>
           </div>
-        </Link>
-        
-        
     </div>
   )
 }
