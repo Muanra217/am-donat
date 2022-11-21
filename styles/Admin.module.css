@@ -31,6 +31,10 @@
     background-color: crimson;
 }
 
+.idOrder {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 540px) {
     .container {
         flex-direction: column;
