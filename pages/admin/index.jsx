@@ -12,7 +12,7 @@ const Index = ({ orders, products}) => {
   const [orderList, setOrderList] = useState(orders);
   const [close, setClose] = useState(true);
   const status = ["preparing", "on the way", "delivered"];
- 
+ console.log(cart.products);
   const handleDelete = async (id) => {
     console.log(id);
     if (window.confirm("Yakin ingin menghapus produk?")) {
