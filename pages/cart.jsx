@@ -121,7 +121,7 @@ const Cart = () => {
                   </div>
                 </td>
                 <td>
-                  <span className={styles.name}>{product.title}</span>
+                  <span className={styles.name}>{product.title} ({product.size>0?product.size>1?"24 Pcs":"12 Pcs":"6 Pcs"})</span>
                 </td>
                 <td>
                   <span className={styles.extras}>
