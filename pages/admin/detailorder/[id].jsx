@@ -1,42 +1,50 @@
 import React from 'react'
 import Image from 'next/image';
 import axios from 'axios';
-import styles from "../../../styles/Cart.module.css";
+import Link from 'next/link';
+// import styles from "../../../styles/Cart.module.css";
+import styles from "../../../styles/DetailOrder.module.css";
 
 const DetailOrder = ({orders}) => {
   console.log(orders);
   return (
-    <>
-      <div className={styles.row}>
-                <table className={styles.table}>
-                    <tbody>
-                        <tr className={styles.trTitle}>
-                            <th>Order ID</th>
-                            <th>Customer</th>
-                            <th>Address</th>
-                            <th>Total</th>
-                        </tr>
-                        <tr className={styles.tr}>
-                            <td>
-                                <span className={styles.id}>{orders._id}</span>
-                            </td>
-                            <td>
-                                <span className={styles.name}>
-                                {orders.customer}
-                                </span>
-                            </td>
-                            <td>
-                                <span className={styles.address}>{orders.address}</span>
-                            </td>
-                            <td>
-                                <span className={styles.total}>{orders.total}</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <table className={styles.table}>
+    <div className={styles.container}>
+      <Link href="/admin" passHref>
+        <div className={styles.backButton}>
+            Back
+        </div>
+      </Link>
+      <div className={styles.customer}>
+        <table className={styles.table}>
+          <thead>
+              <tr className={styles.trTitle}>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Address</th>
+                <th>Total</th>
+              </tr>
+          </thead>
           <tbody>
+            <tr className={styles.tr}>
+              <td>
+                <span className={styles.id}>{orders._id}</span>
+              </td>
+              <td>
+                <span className={styles.name}>{orders.customer}</span>
+              </td>
+              <td>
+                <span className={styles.address}>{orders.address}</span>
+              </td>
+              <td>
+                <span className={styles.total}>{orders.total.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className={styles.products}>
+        <table className={styles.table}>
+          <thead>
             <tr className={styles.trTitle}>
               <th>Product</th>
               <th>Name</th>
@@ -45,7 +53,7 @@ const DetailOrder = ({orders}) => {
               <th>Quantity</th>
               <th>Total</th>
             </tr>
-          </tbody>
+          </thead>
           <tbody>
             {orders.products.map((product) => (
               <tr className={styles.tr} key={product._id}>
@@ -82,7 +90,9 @@ const DetailOrder = ({orders}) => {
             ))}
           </tbody>
         </table>
-    </>
+
+      </div>
+    </div>
   )
 }
 
