@@ -37,7 +37,7 @@ const Product = ({product}) => {
     // }
 
     const handleClick = async () => {
-        dispatch(addProduct({...product, quantity, price, notes}))
+        dispatch(addProduct({...product, quantity, price, notes, size}))
     }
 
     return (
@@ -72,17 +72,6 @@ const Product = ({product}) => {
                 </div>
                 <h3 className={styles.choose}>Notes (Optional)</h3>
                 <div className={styles.ingredients}>
-                    {/* {product.extraOptions.map((option) => (
-                        <div className={styles.option} key={option._id}>
-                            <input 
-                                type="checkbox" 
-                                id={option.text} 
-                                name={option.text} 
-                                className={styles.checkbox}
-                                onChange={(e)=>handleChange(e,option)} />
-                            <label htmlFor="double" className={styles.label}>{option.text}</label>
-                        </div>
-                    ))} */}
                     <textarea
                         rows={8}
                         cols={56}

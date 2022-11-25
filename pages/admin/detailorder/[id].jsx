@@ -6,7 +6,7 @@ import Link from 'next/link';
 import styles from "../../../styles/DetailOrder.module.css";
 
 const DetailOrder = ({orders}) => {
-  console.log(orders);
+  console.log(orders.products);
   return (
     <div className={styles.container}>
       <Link href="/admin" passHref>
@@ -68,7 +68,7 @@ const DetailOrder = ({orders}) => {
                   </div>
                 </td>
                 <td>
-                  <span className={styles.name}>{product.title}</span>
+                  <span className={styles.name}>{product.title} ({product.size>0?product.size>1?"24 Pcs":"12 Pcs":"6 Pcs"})</span>
                 </td>
                 <td>
                   <span className={styles.extras}>
