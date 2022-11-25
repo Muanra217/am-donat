@@ -8,14 +8,7 @@ import { useEffect, useState } from 'react'
 const Navbar = () => {
   const quantity = useSelector(state => state.cart.quantity);
   const [cart, setCart] = useState(styles.cart)
-  // const getCookie = (cookieName) => {
-  //   let cookie = {};
-  //   document.cookie.split(';').forEach(function(el) {
-  //     let [key,value] = el.split('=');
-  //     cookie[key.trim()] = value;
-  //   })
-  //   return cookie[cookieName];
-  // }
+
   useEffect(() => {if(getCookie('token') !== process.env.TOKEN){
     setCart(styles.cartNone)
   } else {

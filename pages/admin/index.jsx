@@ -3,22 +3,27 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "../../styles/Admin.module.css";
 import Edit from "../../components/Edit";
+import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const Index = ({ orders, products}) => {
+  const cart = useSelector((state) => state.cart);
   const [productList, setProductList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
   const [close, setClose] = useState(true);
   const status = ["preparing", "on the way", "delivered"];
-
+ console.log(cart.products);
   const handleDelete = async (id) => {
     console.log(id);
-    try {
-      const res = await axios.delete(
-        "http://localhost:3000/api/products/" + id
-      );
-      setProductList(productList.filter((product) => product._id !== id));
-    } catch (err) {
-      console.log(err);
+    if (window.confirm("Yakin ingin menghapus produk?")) {
+      try {
+        const res = await axios.delete(
+          "http://localhost:3000/api/products/" + id
+        );
+        setProductList(productList.filter((product) => product._id !== id));
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -118,7 +123,9 @@ const Index = ({ orders, products}) => {
           {orderList.map((order) => (
             <tbody key={order._id}>
               <tr>
+              <Link href={`/admin/detailorder/${order._id}`} passHref>
                 <td className={styles.idOrder}>{order._id.slice(0, 5)}...</td>
+              </Link>
                 <td>{order.customer}</td>
                 <td>{order.total.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</td>
                 <td>

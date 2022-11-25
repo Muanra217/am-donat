@@ -22,7 +22,7 @@ const Cart = () => {
   const style = { layout: "vertical" };
   const dispatch = useDispatch();
   const router = useRouter();
-
+  
   const createOrder = async (data) => {
     try {
       const res = await axios.post("http://localhost:3000/api/orders", data);
@@ -84,6 +84,7 @@ const Cart = () => {
                 address: shipping.address.address_line_1,
                 total: cart.total,
                 method: 1,
+                products: cart.products,
               });
             });
           }}
@@ -182,7 +183,7 @@ const Cart = () => {
           )}
         </div>
       </div>
-      {cash && !close && <OrderDetail total={cart.total} createOrder={createOrder} setClose={setClose}/>}
+      {cash && !close && <OrderDetail total={cart.total} createOrder={createOrder} setClose={setClose} products={cart.products}/>}
     </div>
   );
 };

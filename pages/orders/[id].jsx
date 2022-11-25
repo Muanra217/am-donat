@@ -9,7 +9,7 @@ const Order = ({order}) => {
         if (index - status === 1) return styles.active;
         if (index - status > 1) return styles.todo;
     }
-
+console.log(order);
      // container function to generate the Invoice
     const generateInvoice = e => {
         e.preventDefault();
@@ -126,7 +126,7 @@ const Order = ({order}) => {
 export const getServerSideProps = async ({ params }) => {
     const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
     return {
-      props: { order: res.data },
+      props: { order: res.data, },
     };
 };
 
