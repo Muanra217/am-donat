@@ -22,7 +22,7 @@ const Cart = () => {
   const style = { layout: "vertical" };
   const dispatch = useDispatch();
   const router = useRouter();
-  
+  console.log(cart.products);
   const createOrder = async (data) => {
     try {
       const res = await axios.post("http://localhost:3000/api/orders", data);

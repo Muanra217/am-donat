@@ -9,7 +9,7 @@ const Order = ({order}) => {
         if (index - status === 1) return styles.active;
         if (index - status > 1) return styles.todo;
     }
-console.log(order);
+console.log(order.products);
      // container function to generate the Invoice
     const generateInvoice = e => {
         e.preventDefault();
@@ -24,6 +24,7 @@ console.log(order);
                     total:order.total.toLocaleString("id-ID", {style:"currency", currency:"IDR"}),
                     method: order.method,
                     status: order.status,
+                    products: order.products,
                 }),
             });
             // convert the response into an array Buffer
