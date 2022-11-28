@@ -16,15 +16,23 @@ const Invoice = async (req, res,) => {
   const customerProducts = data.products || [];
 
   //customerProducts map
-  const customerProductsMap = () => {
-    let result = '';
+  const customerProductsMapTitle = () => {
+    let result = ``;
     customerProducts.map((product) => {
       result += `
-        ${product.title}
-        ${product.quantity}
-      `;
+      ${product.title} (${product.size>0?product.size>1?"24 Pcs":"12 Pcs":"6 Pcs"},${product.quantity}), `
+        ;
     });
-    return result;
+    return result
+  }
+  const customerProductsMapPrice = () => {
+    let result = ``;
+    customerProducts.map((product) => {
+      result += ` 
+        ${product.price}, `
+        ;
+    });
+    return result
   }
 
   try {
@@ -41,7 +49,8 @@ const Invoice = async (req, res,) => {
                     customerTotal,
                     customerStatus,
                     customerProducts,
-                    customerProductsMap
+                    customerProductsMapTitle,
+                    customerProductsMapPrice
                   });
 
     // simulate a chrome browser with puppeteer and navigate to a new page
@@ -53,7 +62,7 @@ const Invoice = async (req, res,) => {
     await page.setContent(html, { waitUntil: 'networkidle0' });
 
     // convert the page to pdf with the .pdf() method
-    const pdf = await page.pdf({ format: 'A5' });
+    const pdf = await page.pdf({ format: 'A4' });
     await browser.close();
 
     // send the result to the client
