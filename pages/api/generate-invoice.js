@@ -10,9 +10,30 @@ const Invoice = async (req, res,) => {
   const customerName = data.customer || 'John Doe';
   const customerId = data.id || '123456789';
   const customerAddress = data.address || '1234 Main Street, New York, NY 10001';
-  const customerMethod = data.method || 'Credit Card';
+  const customerMethod = (data.method === 1) ? 'Credit Card' : 'Cash on Delivery';
   const customerTotal = data.total || 'Rp0.00';
-  const customerStatus = data.status || 'Paid';
+  const customerStatus = (data.status === 0) ? 'Preparing' : (data.status === 1) ? 'On the way' : 'Delivered';
+  const customerProducts = data.products || [];
+
+  //customerProducts map
+  const customerProductsMapTitle = () => {
+    let result = ``;
+    customerProducts.map((product) => {
+      result += `
+      ${product.title} (${product.size>0?product.size>1?"24 Pcs":"12 Pcs":"6 Pcs"},${product.quantity}), `
+        ;
+    });
+    return result
+  }
+  const customerProductsMapPrice = () => {
+    let result = ``;
+    customerProducts.map((product) => {
+      result += ` 
+        ${product.price}, `
+        ;
+    });
+    return result
+  }
 
   try {
     // read our invoice-template.html file using node fs module
@@ -27,6 +48,9 @@ const Invoice = async (req, res,) => {
                     customerMethod, 
                     customerTotal,
                     customerStatus,
+                    customerProducts,
+                    customerProductsMapTitle,
+                    customerProductsMapPrice
                   });
 
     // simulate a chrome browser with puppeteer and navigate to a new page
@@ -38,7 +62,7 @@ const Invoice = async (req, res,) => {
     await page.setContent(html, { waitUntil: 'networkidle0' });
 
     // convert the page to pdf with the .pdf() method
-    const pdf = await page.pdf({ format: 'A5' });
+    const pdf = await page.pdf({ format: 'A4' });
     await browser.close();
 
     // send the result to the client
