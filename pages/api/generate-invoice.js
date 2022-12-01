@@ -29,7 +29,7 @@ const Invoice = async (req, res,) => {
     let result = ``;
     customerProducts.map((product) => {
       result += ` 
-        ${product.price}, `
+        ${product.price*product.quantity}, `
         ;
     });
     return result

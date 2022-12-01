@@ -30,7 +30,7 @@ const OrderSchema = new mongoose.Schema(
           title:{type: String, required: true},
           size:{type: Number, required: true},
           price:{type: Number, required: true},
-          notes:{type: String, required: true},
+          notes:{type: String},
           quantity:{type: Number, required: true},
           img:{type: String, required: true},
         }
