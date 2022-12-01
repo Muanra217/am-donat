@@ -7,6 +7,8 @@ import styles from "../../../styles/DetailOrder.module.css";
 
 const DetailOrder = ({orders}) => {
   console.log(orders.products);
+  const d = new Date(orders.createdAt);
+  let localDate = d.toLocaleString();
   return (
     <div className={styles.container}>
       <Link href="/admin" passHref>
@@ -22,6 +24,7 @@ const DetailOrder = ({orders}) => {
                 <th>Customer</th>
                 <th>Address</th>
                 <th>Total</th>
+                <th>Date</th>
               </tr>
           </thead>
           <tbody>
@@ -37,6 +40,9 @@ const DetailOrder = ({orders}) => {
               </td>
               <td>
                 <span className={styles.total}>{orders.total.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}</span>
+              </td>
+              <td>
+                <span className={styles.date}>{localDate}</span>
               </td>
             </tr>
           </tbody>

@@ -9,11 +9,12 @@ import {
 } from "@paypal/react-paypal-js";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { reset } from "../redux/cartSlice";
+import { reset, removeTodo } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const [productList, setProductList] = useState(cart.products);
   const [close, setClose] = useState(false);
   const [open, setOpen] = useState(false);
   const [cash, setCash] = useState(false);
@@ -31,7 +32,21 @@ const Cart = () => {
         router.push(`/orders/${res.data._id}`);
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data);
+    }
+  };
+
+  const handleDelete = async (id, price, quantity) => {
+    // console.log(id);
+    if (window.confirm("Yakin ingin menghapus produk dari cart?")) {
+      
+        // let filteredIndex = cart.products.findIndex(product => product._id === id, 1);
+        // const filteredArray = cart.products.filter((product) => product._id === id);
+        // cart.products.splice(filteredIndex, 1);
+        // delete productList item
+        // setProductList(productList.filter((product) => product._id === id));
+        // console.log(productList);
+        dispatch(removeTodo({id: id, price: price, quantity: quantity}));
     }
   };
 
@@ -66,7 +81,7 @@ const Cart = () => {
                   {
                     amount: {
                       currency_code: currency,
-                      value: amount,
+                      value: (amount*64/1000000).toFixed(2),
                     },
                   },
                 ],
@@ -139,6 +154,13 @@ const Cart = () => {
                     {(product.price * product.quantity).toLocaleString("id-ID", {style:"currency", currency:"IDR"})}
                   </span>
                 </td>
+                <td>
+                  <button
+                    className={styles.delButton}
+                    onClick={() => handleDelete(product._id, product.price, product.quantity)}
+                  >
+                    Delete
+                </button></td>
               </tr>
             ))}
           </tbody>

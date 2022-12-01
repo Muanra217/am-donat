@@ -57,6 +57,14 @@
     margin-top: 20px;
 }
 
+.delButton {
+    background-color: crimson;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+}
+
 .paymentMethods {
     margin-top: 10px;
     display: flex;
