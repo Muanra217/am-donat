@@ -11,6 +11,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { reset, removeTodo } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
+import Link from "next/link";
+import TransferPayment from "../components/TransferPayment";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -18,12 +20,13 @@ const Cart = () => {
   const [close, setClose] = useState(false);
   const [open, setOpen] = useState(false);
   const [cash, setCash] = useState(false);
+  const [transfer, setTransfer] = useState(false);
   const amount = cart.total;
   const currency = "USD";
   const style = { layout: "vertical" };
   const dispatch = useDispatch();
   const router = useRouter();
-  console.log(cart.products);
+
   const createOrder = async (data) => {
     try {
       const res = await axios.post("http://localhost:3000/api/orders", data);
@@ -39,13 +42,6 @@ const Cart = () => {
   const handleDelete = async (id, price, quantity) => {
     // console.log(id);
     if (window.confirm("Yakin ingin menghapus produk dari cart?")) {
-      
-        // let filteredIndex = cart.products.findIndex(product => product._id === id, 1);
-        // const filteredArray = cart.products.filter((product) => product._id === id);
-        // cart.products.splice(filteredIndex, 1);
-        // delete productList item
-        // setProductList(productList.filter((product) => product._id === id));
-        // console.log(productList);
         dispatch(removeTodo({id: id, price: price, quantity: quantity}));
     }
   };
@@ -186,6 +182,12 @@ const Cart = () => {
               >
                 CASH ON DELIVERY
               </button>
+              <button
+                  className={styles.payButton}
+                  onClick={() => {setTransfer(true),setClose(setClose)} }
+                >
+                    TRANSFER BANK
+              </button>
               <PayPalScriptProvider
                 options={{
                   "client-id":
@@ -206,6 +208,7 @@ const Cart = () => {
         </div>
       </div>
       {cash && !close && <OrderDetail total={cart.total} createOrder={createOrder} setClose={setClose} products={cart.products}/>}
+      {transfer && !close && <TransferPayment total={cart.total} createOrder={createOrder} setClose={setClose} products={cart.products}/>}
     </div>
   );
 };
