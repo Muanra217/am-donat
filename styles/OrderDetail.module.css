@@ -67,3 +67,17 @@
     top: -10px;
     right: -10px;
   }
+
+  .payButton {
+    padding: 10px 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+  }
+
+  .payLink {
+    width: 100%;
+  }

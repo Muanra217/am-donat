@@ -10,7 +10,7 @@ const Invoice = async (req, res,) => {
   const customerName = data.customer || 'John Doe';
   const customerId = data.id || '123456789';
   const customerAddress = data.address || '1234 Main Street, New York, NY 10001';
-  const customerMethod = (data.method === 1) ? 'Credit Card' : 'Cash on Delivery';
+  const customerMethod = (data.method === 1) ? 'Credit Card or Transfer' : 'Cash on Delivery';
   const customerTotal = data.total || 'Rp0.00';
   const customerStatus = (data.status === 0) ? 'Preparing' : (data.status === 1) ? 'On the way' : 'Delivered';
   const customerProducts = data.products || [];
