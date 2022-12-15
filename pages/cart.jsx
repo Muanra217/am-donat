@@ -186,7 +186,7 @@ const Cart = () => {
                   className={styles.payButton}
                   onClick={() => {setTransfer(true),setClose(setClose)} }
                 >
-                    TRANSFER BANK
+                    TRANSFER
               </button>
               <PayPalScriptProvider
                 options={{
