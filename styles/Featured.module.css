@@ -29,8 +29,17 @@
     position: relative;
 }
 
-@media screen and (max-width: 540px) {
+/* @media screen and (max-width: 540px) {
     .container {
         height: 50vh;
+    }
+} */
+
+@media screen and (max-width: 1000px) {
+    .container {
+        height: 30vh;
+    }
+    .imgContainer {
+        margin-bottom: 10px;
     }
 }
