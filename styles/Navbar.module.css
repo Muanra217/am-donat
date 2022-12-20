@@ -91,10 +91,13 @@
 }
 
 @media screen and (max-width: 540px) {
-    .item:nth-child(2) {
+    /* .item:nth-child(2) {
         display: none;
-    }
+    } */
     .item:nth-child(1) {
         flex: 3;
+    }
+    .container {
+        padding: 0px 25px;
     }
 }
