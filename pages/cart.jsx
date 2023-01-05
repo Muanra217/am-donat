@@ -207,8 +207,8 @@ const Cart = () => {
           )}
         </div>
       </div>
-      {cash && !close && <OrderDetail total={cart.total} createOrder={createOrder} setClose={setClose} products={cart.products}/>}
-      {transfer && !close && <TransferPayment total={cart.total} createOrder={createOrder} setClose={setClose} products={cart.products}/>}
+      {cash && !close && <OrderDetail total={cart.total} createOrder={createOrder} setCash={setCash} setClose={setClose} products={cart.products}/>}
+      {transfer && !close && <TransferPayment total={cart.total} createOrder={createOrder} setTransfer={setTransfer} setClose={setClose} products={cart.products}/>}
     </div>
   );
 };
