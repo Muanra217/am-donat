@@ -9,6 +9,8 @@ import axios from 'axios'
 import { useState } from 'react'
 import LogoutButton from '../components/LogoutButton'
 import Navbar from '../components/Navbar'
+import dbConnect from '../lib/mongo'
+import Product from '../models/Product'
 
 export default function Home({productList, admin}) {
   const [close, setClose] = useState(true);
@@ -37,11 +39,20 @@ export const getServerSideProps = async (ctx) => {
     admin = true;
   }
 
-  const res = await axios.get("http://localhost:3000/api/products");
-  return {
-    props: {
-      productList: res.data,
-      admin
+  await dbConnect()
+
+  const res = await Product.find()
+  return{
+    props:{
+      productList:JSON.parse(JSON.stringify(res)),
+      admin,
     }
   }
+  // const res = await axios.get("http://localhost:3000/api/products");
+  // return {
+  //   props: {
+  //     productList: res.data,
+  //     admin
+  //   }
+  // }
 }
