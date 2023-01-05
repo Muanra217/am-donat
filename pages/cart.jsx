@@ -11,7 +11,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { reset, removeTodo } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
-import Link from "next/link";
 import TransferPayment from "../components/TransferPayment";
 
 const Cart = () => {
@@ -35,7 +34,7 @@ const Cart = () => {
         router.push(`/orders/${res.data._id}`);
       }
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err);
     }
   };
 
