@@ -11,7 +11,7 @@ import ProductDb from '../../models/Product'
 const Product = ({product}) => {
     const [price, setPrice] = useState(product.prices[0])
     const [size, setSize] = useState(0)
-    // const [extras, setExtras] = useState([])
+    // const [stocks, setStocks] = useState(product.stocks[0])
     const [notes, setNotes] = useState(null);
     const [quantity, setQuantity] = useState(1)
     const dispatch = useDispatch()
@@ -39,7 +39,7 @@ const Product = ({product}) => {
     // }
 
     const handleClick = async () => {
-        dispatch(addProduct({...product, quantity, price, notes, size}))
+        dispatch(addProduct({...product, quantity, price, notes, size, stocks}))
     }
 
     return (
@@ -70,6 +70,21 @@ const Product = ({product}) => {
                     <div className={styles.size} onClick={()=>handleSize(2)}>
                         <Image src="/img/size.png" alt="size1" layout='fill'/>
                         <span className={styles.number}>24 pcs</span>
+                    </div>
+                </div>
+                <h3 className={styles.choose}>Stocks left</h3>
+                <div className={styles.sizes}>
+                    <div className={styles.size}>
+                        <Image src="/img/size.png" alt="stock1" layout='fill'/>
+                        <span className={styles.number}>{product.stocks[0]}</span>
+                    </div>
+                    <div className={styles.size}>
+                        <Image src="/img/size.png" alt="stock1" layout='fill'/>
+                        <span className={styles.number}>{product.stocks[1]}</span>
+                    </div>
+                    <div className={styles.size}>
+                        <Image src="/img/size.png" alt="stock1" layout='fill'/>
+                        <span className={styles.number}>{product.stocks[2]}</span>
                     </div>
                 </div>
                 <h3 className={styles.choose}>Notes (Optional)</h3>

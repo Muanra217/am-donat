@@ -8,8 +8,7 @@ const Add = ({ setClose }) => {
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [prices, setPrices] = useState([]);
-  // const [extraOptions, setExtraOptions] = useState([]);
-  // const [extra, setExtra] = useState(null);
+  const [stocks, setStocks] = useState([]);
 
   const changePrice = (e, index) => {
     const currentPrices = prices;
@@ -17,13 +16,11 @@ const Add = ({ setClose }) => {
     setPrices(currentPrices);
   };
 
-  // const handleExtraInput = (e) => {
-  //   setExtra({ ...extra, [e.target.name]: e.target.value });
-  // };
-
-  // const handleExtra = (e) => {
-  //   setExtraOptions((prev) => [...prev, extra]);
-  // };
+  const changeStock = (e, index) => {
+    const currentStocks = stocks;
+    currentStocks[index] = e.target.value;
+    setStocks(currentStocks);
+  };
 
   const handleCreate = async () => {
     const data = new FormData();
@@ -40,14 +37,14 @@ const Add = ({ setClose }) => {
         title,
         desc,
         prices,
-        // extraOptions,
+        stocks,
         img: url,
       };
 
       await axios.post("http://localhost:3000/api/products", newProduct);
       setClose(true);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data);
     }
   };
 
@@ -101,35 +98,29 @@ const Add = ({ setClose }) => {
             />
           </div>
         </div>
-        {/* <div className={styles.item}>
-          <label className={styles.label}>Extra</label>
-          <div className={styles.extra}>
+        <div className={styles.item}>
+          <label className={styles.label}>Stocks</label>
+          <div className={styles.priceContainer}>
             <input
               className={`${styles.input} ${styles.inputSm}`}
-              type="text"
-              placeholder="Item"
-              name="text"
-              onChange={handleExtraInput}
+              type="number"
+              placeholder="Small"
+              onChange={(e) => changeStock(e, 0)}
             />
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
-              placeholder="Price"
-              name="price"
-              onChange={handleExtraInput}
+              placeholder="Medium"
+              onChange={(e) => changeStock(e, 1)}
             />
-            <button className={styles.extraButton} onClick={handleExtra}>
-              Add
-            </button>
+            <input
+              className={`${styles.input} ${styles.inputSm}`}
+              type="number"
+              placeholder="Large"
+              onChange={(e) => changeStock(e, 2)}
+            />
           </div>
-          <div className={styles.extraItems}>
-            {extraOptions.map((option) => (
-              <span key={option.text} className={styles.extraItem}>
-                {option.text}
-              </span>
-            ))}
-          </div>
-        </div> */}
+        </div>
         <button className={styles.addButton} onClick={handleCreate}>
           Create
         </button>
